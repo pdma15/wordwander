@@ -1,0 +1,62 @@
+{
+  "name": "Feedback",
+  "type": "object",
+  "properties": {
+    "overall_rating": {
+      "type": "number",
+      "description": "Overall satisfaction rating 1-5"
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "too_easy",
+        "just_right",
+        "too_difficult"
+      ],
+      "description": "Perceived difficulty level"
+    },
+    "alphabet_rating": {
+      "type": "number",
+      "description": "Rating for alphabet lessons 1-5"
+    },
+    "phrases_rating": {
+      "type": "number",
+      "description": "Rating for common phrases 1-5"
+    },
+    "voice_rating": {
+      "type": "number",
+      "description": "Rating for voice assistance 1-5"
+    },
+    "quiz_rating": {
+      "type": "number",
+      "description": "Rating for quiz interactivity 1-5"
+    },
+    "design_rating": {
+      "type": "number",
+      "description": "Rating for dark theme design 1-5"
+    },
+    "liked_most": {
+      "type": "string",
+      "description": "What user liked most"
+    },
+    "improvements": {
+      "type": "string",
+      "description": "Suggested improvements"
+    },
+    "learn_next": {
+      "type": "string",
+      "description": "What user wants to learn next"
+    },
+    "email": {
+      "type": "string",
+      "description": "Optional email for follow-up"
+    },
+    "subscribe": {
+      "type": "boolean",
+      "description": "Subscribe for updates on other languages"
+    }
+  },
+  "required": [
+    "overall_rating"
+  ]
+}
