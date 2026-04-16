@@ -63,7 +63,7 @@ export default function QuizScenarioCard({ scenario, selectedOption, onSelect, s
                   </span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <AudioButton text={option.text} size="sm" />
+                  <AudioButton text={option.text} phonetic={option.phonetic} size="sm" />
                   {showResult && isSelected && (
                     isCorrect ? (
                       <Check className="w-5 h-5 text-accent" />

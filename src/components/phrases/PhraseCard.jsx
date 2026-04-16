@@ -34,7 +34,7 @@ export default function PhraseCard({ kannada, phonetic, english, context, index 
         </div>
 
         {/* Audio */}
-        <AudioButton text={kannada} size="md" className="flex-shrink-0 mt-1" />
+        <AudioButton text={kannada} phonetic={phonetic} size="md" className="flex-shrink-0 mt-1" />
       </div>
     </motion.div>
   );

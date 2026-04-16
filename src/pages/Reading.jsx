@@ -103,7 +103,7 @@ export default function Reading() {
                 <h2 className="font-kannada text-4xl sm:text-5xl font-bold text-foreground leading-relaxed">
                   {exercise.kannada}
                 </h2>
-                <AudioButton text={exercise.kannada} size="lg" />
+                <AudioButton text={exercise.kannada} phonetic={exercise.phonetic} size="lg" />
               </div>
               <p className="font-inter text-sm text-muted-foreground mt-4">
                 "{exercise.english}"

@@ -29,7 +29,7 @@ export default function LetterCard({ letter, phonetic, example, meaning, index }
         
         {/* Audio Button */}
         <div className="mt-2 flex justify-center">
-          <AudioButton text={letter} size="sm" />
+          <AudioButton text={letter} phonetic={phonetic} size="sm" />
         </div>
       </div>
 
