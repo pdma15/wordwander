@@ -1,50 +1,40 @@
 import React, { useState, useCallback } from 'react';
 import { Volume2, Loader2 } from 'lucide-react';
 
-export default function AudioButton({ text, phonetic, size = 'sm', className = '' }) {
+// 'sound' = the text TTS will actually speak (phonetically crafted for accuracy)
+// 'phonetic' = display-only transliteration shown to the user
+export default function AudioButton({ text, sound, phonetic, size = 'sm', className = '' }) {
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handleSpeak = useCallback(() => {
     if (isPlaying || !('speechSynthesis' in window)) return;
 
-    // Cancel any ongoing speech first
     window.speechSynthesis.cancel();
-
     setIsPlaying(true);
 
-    const speak = (speakText, lang) => {
-      const utterance = new SpeechSynthesisUtterance(speakText);
-      utterance.lang = lang;
-      utterance.rate = 0.75;
-      utterance.pitch = 1;
-      utterance.volume = 1;
-      utterance.onend = () => setIsPlaying(false);
-      utterance.onerror = () => setIsPlaying(false);
-      window.speechSynthesis.speak(utterance);
-    };
-
-    // Check if a Kannada voice is available
     const voices = window.speechSynthesis.getVoices();
     const kannadaVoice = voices.find(v => v.lang === 'kn-IN' || v.lang.startsWith('kn'));
 
+    const utterance = new SpeechSynthesisUtterance();
+    utterance.rate = 0.8;
+    utterance.pitch = 1;
+    utterance.volume = 1;
+    utterance.onend = () => setIsPlaying(false);
+    utterance.onerror = () => setIsPlaying(false);
+
     if (kannadaVoice) {
-      // Native Kannada voice available — use it
-      const utterance = new SpeechSynthesisUtterance(text);
+      // Native Kannada voice — speak the actual Kannada script
+      utterance.text = text;
       utterance.voice = kannadaVoice;
       utterance.lang = 'kn-IN';
-      utterance.rate = 0.75;
-      utterance.volume = 1;
-      utterance.onend = () => setIsPlaying(false);
-      utterance.onerror = () => setIsPlaying(false);
-      window.speechSynthesis.speak(utterance);
-    } else if (phonetic) {
-      // No Kannada voice — speak the English phonetic instead
-      speak(phonetic, 'en-IN');
     } else {
-      // Last resort: try speaking the Kannada text anyway
-      speak(text, 'kn-IN');
+      // No Kannada voice — use 'sound' (crafted phonetic) or fallback to phonetic
+      utterance.text = sound || phonetic || text;
+      utterance.lang = 'en-IN';
     }
-  }, [text, phonetic, isPlaying]);
+
+    window.speechSynthesis.speak(utterance);
+  }, [text, sound, phonetic, isPlaying]);
 
   const sizeClasses = { sm: 'w-8 h-8', md: 'w-10 h-10', lg: 'w-12 h-12' };
   const iconSizes = { sm: 'w-3.5 h-3.5', md: 'w-4 h-4', lg: 'w-5 h-5' };
@@ -53,7 +43,7 @@ export default function AudioButton({ text, phonetic, size = 'sm', className = '
     <button
       onClick={handleSpeak}
       disabled={isPlaying}
-      title={phonetic ? `Hear: ${phonetic}` : 'Play pronunciation'}
+      title={`Hear: ${phonetic || sound || text}`}
       className={`${sizeClasses[size]} rounded-full flex items-center justify-center transition-all duration-300 ${
         isPlaying
           ? 'bg-accent/20 text-accent animate-pulse'

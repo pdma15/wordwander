@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import AudioButton from '../shared/AudioButton';
 
-export default function LetterCard({ letter, phonetic, example, meaning, index }) {
+export default function LetterCard({ letter, phonetic, sound, example, meaning, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
 
   return (
@@ -29,7 +29,7 @@ export default function LetterCard({ letter, phonetic, example, meaning, index }
         
         {/* Audio Button */}
         <div className="mt-2 flex justify-center">
-          <AudioButton text={letter} phonetic={phonetic} size="sm" />
+          <AudioButton text={letter} sound={sound} phonetic={phonetic} size="sm" />
         </div>
       </div>
 
