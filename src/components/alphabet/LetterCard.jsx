@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import AudioButton from '../shared/AudioButton';
-import VoiceRecorder from './VoiceRecorder';
 
 export default function LetterCard({ letter, phonetic, sound, example, meaning, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -46,10 +45,9 @@ export default function LetterCard({ letter, phonetic, sound, example, meaning, 
         {/* Divider */}
         <div className="my-2 mx-auto w-8 h-px" style={{ background: 'linear-gradient(to right, transparent, #7a5020, transparent)' }} />
 
-        {/* Audio + Voice Recorder row */}
-        <div className="flex items-center justify-center gap-2 mt-1">
+        {/* Audio Button */}
+        <div className="flex items-center justify-center mt-1">
           <AudioButton text={letter} sound={sound} phonetic={phonetic} size="sm" />
-          <VoiceRecorder letterKey={letter} />
         </div>
       </div>
 

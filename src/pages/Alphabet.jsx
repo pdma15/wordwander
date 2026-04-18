@@ -38,7 +38,7 @@ export default function Alphabet() {
           </h1>
 
           <p className="mt-4 text-sm sm:text-base max-w-xl mx-auto leading-relaxed" style={{ color: '#906830' }}>
-            Tap a letter to reveal its example word. Use the <span style={{ color: '#c8942a' }}>🔊 speaker</span> to hear it, or the <span style={{ color: '#c8942a' }}>🎙 mic</span> to record your own voice.
+            Tap a letter to reveal its example word. Use the <span style={{ color: '#c8942a' }}>🔊 speaker</span> to hear its pronunciation.
           </p>
 
           {/* Bottom decorative rule */}
@@ -106,11 +106,7 @@ export default function Alphabet() {
           </span>
           <span style={{ color: '#4a3010' }}>|</span>
           <span className="flex items-center gap-2">
-            <span style={{ color: '#c8942a' }}>🎙</span> Record your voice
-          </span>
-          <span style={{ color: '#4a3010' }}>|</span>
-          <span className="flex items-center gap-2">
-            <span style={{ color: '#c8942a' }}>▶</span> Replay your recording
+            <span style={{ color: '#c8942a' }}>✦</span> Tap a card to see example word
           </span>
         </motion.div>
       </div>
