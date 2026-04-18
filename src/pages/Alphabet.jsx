@@ -38,7 +38,7 @@ export default function Alphabet() {
           </h1>
 
           <p className="mt-4 text-sm sm:text-base max-w-xl mx-auto leading-relaxed" style={{ color: '#906830' }}>
-            Tap a letter to reveal its example word. Use the <span style={{ color: '#c8942a' }}>🔊 speaker</span> to hear its pronunciation.
+            Tap a letter to reveal its example word and meaning.
           </p>
 
           {/* Bottom decorative rule */}
@@ -102,11 +102,7 @@ export default function Alphabet() {
           style={{ color: '#6a4818' }}
         >
           <span className="flex items-center gap-2">
-            <span style={{ color: '#c8942a' }}>🔊</span> Hear pronunciation
-          </span>
-          <span style={{ color: '#4a3010' }}>|</span>
-          <span className="flex items-center gap-2">
-            <span style={{ color: '#c8942a' }}>✦</span> Tap a card to see example word
+            <span style={{ color: '#c8942a' }}>✦</span> Tap a card to see its example word and meaning
           </span>
         </motion.div>
       </div>
