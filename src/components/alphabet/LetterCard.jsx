@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 
 export default function LetterCard({ letter, phonetic, sound, example, meaning, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   return (
     <motion.div
@@ -10,6 +11,8 @@ export default function LetterCard({ letter, phonetic, sound, example, meaning, 
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.3, delay: index * 0.02 }}
       onClick={() => setIsExpanded(!isExpanded)}
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
       className={`relative group cursor-pointer transition-all duration-500 overflow-hidden ${
         isExpanded ? 'shadow-lg shadow-amber-900/30' : 'hover:shadow-md hover:shadow-amber-900/20'
       }`}
@@ -28,12 +31,27 @@ export default function LetterCard({ letter, phonetic, sound, example, meaning, 
       <div className="absolute bottom-1 right-1 w-3 h-3 opacity-40" style={{ borderBottom: '1.5px solid #c8942a', borderRight: '1.5px solid #c8942a', borderRadius: '0 0 1px 0' }} />
 
       <div className="p-4 text-center">
-        {/* Main Letter */}
-        <span
-          className="font-kannada text-4xl sm:text-5xl font-bold block transition-colors duration-300"
-          style={{ color: isExpanded ? '#f0c060' : '#e8b84b', textShadow: '0 2px 8px rgba(200,148,42,0.3)' }}
-        >
-          {letter}
+        {/* Main Letter with brush-sweep reveal */}
+        <span className="relative inline-block">
+          {/* Ghost letter underneath (always visible, muted) */}
+          <span
+            className="font-kannada text-4xl sm:text-5xl font-bold block"
+            style={{ color: '#5a3a10', textShadow: 'none' }}
+          >
+            {letter}
+          </span>
+          {/* Revealed letter swept over the top */}
+          <motion.span
+            className="font-kannada text-4xl sm:text-5xl font-bold block absolute inset-0"
+            animate={{ clipPath: (isHovered || isExpanded) ? 'inset(0% 0% 0% 0%)' : 'inset(0% 100% 0% 0%)' }}
+            transition={{ duration: 0.55, ease: [0.4, 0, 0.2, 1] }}
+            style={{
+              color: isExpanded ? '#f0c060' : '#e8b84b',
+              textShadow: '0 2px 12px rgba(200,148,42,0.5)',
+            }}
+          >
+            {letter}
+          </motion.span>
         </span>
 
         {/* Phonetic */}
