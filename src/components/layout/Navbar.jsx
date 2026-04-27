@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { BookOpen, GraduationCap, MessageSquare, Home, Menu, X, Languages } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useProgress } from '../../lib/progressContext';
 
 const navItems = [
   { path: '/', label: 'Home', icon: Home },
@@ -15,6 +16,7 @@ const navItems = [
 export default function Navbar() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { pct, learned, mastered, total } = useProgress();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
@@ -56,6 +58,24 @@ export default function Navbar() {
                 </Link>
               );
             })}
+          </div>
+
+          {/* Progress Pill */}
+          <div className="hidden md:flex items-center gap-2 mr-2">
+            <div className="flex flex-col items-end gap-0.5">
+              <div className="flex items-center gap-1.5">
+                <span className="font-inter text-xs text-muted-foreground">{learned + mastered}/{total}</span>
+                <span className="font-inter text-xs font-semibold" style={{ color: '#c8942a' }}>{pct}%</span>
+              </div>
+              <div className="w-24 h-1.5 rounded-full overflow-hidden" style={{ background: '#2a1c08' }}>
+                <motion.div
+                  className="h-full rounded-full"
+                  animate={{ width: `${pct}%` }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  style={{ background: 'linear-gradient(to right, #6a9c5a, #c8942a)' }}
+                />
+              </div>
+            </div>
           </div>
 
           {/* Mobile Toggle */}

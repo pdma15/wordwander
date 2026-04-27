@@ -6,6 +6,7 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AppLayout from './components/layout/AppLayout';
+import { ProgressProvider } from './lib/progressContext';
 import Home from './pages/Home';
 import Alphabet from './pages/Alphabet';
 import Phrases from './pages/Phrases';
@@ -58,10 +59,12 @@ function App() {
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
-        <Router>
-          <AuthenticatedApp />
-        </Router>
-        <Toaster />
+        <ProgressProvider>
+          <Router>
+            <AuthenticatedApp />
+          </Router>
+          <Toaster />
+        </ProgressProvider>
       </QueryClientProvider>
     </AuthProvider>
   )

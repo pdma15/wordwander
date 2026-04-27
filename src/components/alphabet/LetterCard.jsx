@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { useProgress } from '../../lib/progressContext';
 
 export default function LetterCard({ letter, phonetic, sound, example, meaning, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const { progress, setStatus } = useProgress();
+  const status = progress[letter]; // undefined | 'learned' | 'mastered'
 
   return (
     <motion.div
@@ -24,6 +27,19 @@ export default function LetterCard({ letter, phonetic, sound, example, meaning, 
         borderRadius: '4px',
       }}
     >
+      {/* Status badge */}
+      {status && (
+        <div
+          className="absolute top-1.5 left-1.5 text-[9px] font-inter font-semibold px-1.5 py-0.5 rounded-full z-10"
+          style={status === 'mastered'
+            ? { background: '#7a5010', color: '#f5d98a' }
+            : { background: '#2a4a24', color: '#90d878' }
+          }
+        >
+          {status === 'mastered' ? '★' : '✓'}
+        </div>
+      )}
+
       {/* Ornate corner decorations */}
       <div className="absolute top-1 left-1 w-3 h-3 opacity-40" style={{ borderTop: '1.5px solid #c8942a', borderLeft: '1.5px solid #c8942a', borderRadius: '1px 0 0 0' }} />
       <div className="absolute top-1 right-1 w-3 h-3 opacity-40" style={{ borderTop: '1.5px solid #c8942a', borderRight: '1.5px solid #c8942a', borderRadius: '0 1px 0 0' }} />
@@ -76,6 +92,29 @@ export default function LetterCard({ letter, phonetic, sound, example, meaning, 
           <div className="pt-3 text-center">
             <p className="font-kannada text-lg" style={{ color: '#f0c060' }}>{example}</p>
             <p className="font-inter text-xs mt-1" style={{ color: '#906830' }}>{meaning}</p>
+          </div>
+          {/* Mark buttons */}
+          <div className="flex gap-2 mt-3 justify-center" onClick={e => e.stopPropagation()}>
+            <button
+              onClick={() => setStatus(letter, 'learned')}
+              className="text-xs px-3 py-1 rounded-full font-inter font-medium transition-all duration-200"
+              style={status === 'learned'
+                ? { background: '#4a7c3f', color: '#c8f0b8', border: '1px solid #5a9c4f' }
+                : { background: 'transparent', color: '#6a8860', border: '1px solid #3a5830' }
+              }
+            >
+              {status === 'learned' ? '✓ Learned' : 'Mark Learned'}
+            </button>
+            <button
+              onClick={() => setStatus(letter, 'mastered')}
+              className="text-xs px-3 py-1 rounded-full font-inter font-medium transition-all duration-200"
+              style={status === 'mastered'
+                ? { background: '#7a5010', color: '#f5d98a', border: '1px solid #c8942a' }
+                : { background: 'transparent', color: '#7a5828', border: '1px solid #5a3e10' }
+              }
+            >
+              {status === 'mastered' ? '★ Mastered' : 'Mark Mastered'}
+            </button>
           </div>
         </motion.div>
       )}
