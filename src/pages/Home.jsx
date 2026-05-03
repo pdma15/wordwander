@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Languages, BookOpen, Mic, GraduationCap, BarChart3 } from 'lucide-react';
+import { ArrowRight, Languages, BookOpen, GraduationCap, BarChart3 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const features = [
@@ -18,13 +18,6 @@ const features = [
     description: 'Essential everyday phrases with audio playback and cultural context.',
     color: 'text-accent',
     bg: 'bg-accent/10',
-  },
-  {
-    icon: Mic,
-    title: 'Voice Assistance',
-    description: 'Hear native pronunciation and practice reading aloud with feedback.',
-    color: 'text-primary',
-    bg: 'bg-primary/10',
   },
   {
     icon: GraduationCap,
