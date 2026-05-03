@@ -1,6 +1,5 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import AudioButton from '../shared/AudioButton';
 
 export default function PhraseCard({ kannada, phonetic, english, context, index }) {
   return (
@@ -10,7 +9,7 @@ export default function PhraseCard({ kannada, phonetic, english, context, index 
       transition={{ duration: 0.4, delay: index * 0.06 }}
       className="group relative p-5 sm:p-6 rounded-2xl bg-card/60 backdrop-blur-sm border border-border/30 hover:border-primary/30 transition-all duration-500 hover:shadow-lg hover:shadow-primary/5"
     >
-      <div className="flex items-start justify-between gap-4">
+      <div className="flex items-start gap-4">
         <div className="flex-1 min-w-0">
           {/* Kannada Text */}
           <h3 className="font-kannada text-2xl sm:text-3xl font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
@@ -33,8 +32,6 @@ export default function PhraseCard({ kannada, phonetic, english, context, index 
           </p>
         </div>
 
-        {/* Audio */}
-        <AudioButton text={kannada} phonetic={phonetic} size="md" className="flex-shrink-0 mt-1" />
       </div>
     </motion.div>
   );
