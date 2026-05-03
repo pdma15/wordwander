@@ -3,11 +3,13 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Check, X, ArrowRight, RotateCcw, ChevronRight } from 'lucide-react';
+import { Check, X, RotateCcw, ChevronRight } from 'lucide-react';
 import SectionHeader from '../components/shared/SectionHeader';
+import SignboardQuiz from '../components/reading/SignboardQuiz';
 import { readingExercises } from '../lib/kannadaData';
 
 export default function Reading() {
+  const [mode, setMode] = useState('transliteration'); // 'transliteration' | 'signboards'
   const [selectedLevel, setSelectedLevel] = useState(0);
   const [currentExercise, setCurrentExercise] = useState(0);
   const [userAnswer, setUserAnswer] = useState('');
@@ -52,6 +54,26 @@ export default function Reading() {
           kannadaTitle="ಓದುವ ಅಭ್ಯಾಸ"
           subtitle="Read Kannada text and type the phonetic transliteration. Build your reading skills step by step."
         />
+
+        {/* Mode Toggle */}
+        <div className="flex justify-center mb-8">
+          <div className="flex p-1 gap-1 rounded-xl border border-border/30 bg-card/60">
+            {[['transliteration', 'Transliteration'], ['signboards', '📍 Signboards']].map(([val, label]) => (
+              <button
+                key={val}
+                onClick={() => setMode(val)}
+                className={`px-5 py-2 rounded-lg font-inter text-sm font-medium transition-all duration-300 ${
+                  mode === val ? 'bg-primary/15 text-primary border border-primary/30' : 'text-muted-foreground hover:text-foreground'
+                }`}
+              >
+                {label}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {mode === 'signboards' ? <SignboardQuiz /> : null}
+        {mode === 'signboards' ? null : <>
 
         {/* Level Selector */}
         <div className="flex gap-3 justify-center mb-10">
@@ -179,6 +201,7 @@ export default function Reading() {
             </div>
           </motion.div>
         </AnimatePresence>
+        </>}
       </div>
     </div>
   );
