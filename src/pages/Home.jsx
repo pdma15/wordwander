@@ -167,6 +167,9 @@ export default function Home() {
             className="text-center mb-16"
           >
             <p className="font-kannada text-primary/60 text-lg mb-2">ವೈಶಿಷ್ಟ್ಯಗಳು</p>
+            <span className="inline-block font-inter text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4 border border-primary/30 text-primary/80 bg-primary/10">
+              Features We Provide
+            </span>
             <h2 className="font-poppins text-3xl sm:text-4xl font-bold text-foreground">
               Everything You Need to Learn Kannada
             </h2>
