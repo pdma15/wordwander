@@ -5,7 +5,6 @@ import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
 import { Check, X, ArrowRight, RotateCcw, ChevronRight } from 'lucide-react';
 import SectionHeader from '../components/shared/SectionHeader';
-import AudioButton from '../components/shared/AudioButton';
 import { readingExercises } from '../lib/kannadaData';
 
 export default function Reading() {
@@ -103,7 +102,6 @@ export default function Reading() {
                 <h2 className="font-kannada text-4xl sm:text-5xl font-bold text-foreground leading-relaxed">
                   {exercise.kannada}
                 </h2>
-                <AudioButton text={exercise.kannada} phonetic={exercise.phonetic} size="lg" />
               </div>
               <p className="font-inter text-sm text-muted-foreground mt-4">
                 "{exercise.english}"
