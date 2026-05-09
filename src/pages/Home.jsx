@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ArrowRight, Languages, BookOpen, GraduationCap, BarChart3 } from 'lucide-react';
+import { ArrowRight, Languages, BookOpen, GraduationCap, BarChart3, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const features = [
@@ -32,6 +32,13 @@ const features = [
     description: 'Monitor your learning journey with detailed progress tracking.',
     color: 'text-primary',
     bg: 'bg-primary/10',
+  },
+  {
+    icon: MessageSquare,
+    title: 'Q&A Chatbot',
+    description: 'Got questions? Our built-in chatbot answers anything about the app and Kannada learning instantly.',
+    color: 'text-accent',
+    bg: 'bg-accent/10',
   },
 ];
 
