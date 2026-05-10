@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, GraduationCap, MessageSquare, Home, Menu, X, Languages } from 'lucide-react';
+import { BookOpen, GraduationCap, MessageSquare, Home, Menu, X, Languages, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useProgress } from '../../lib/progressContext';
+import { useTheme } from '../../lib/themeContext';
 
 const navItems = [
   { path: '/', label: 'Home', icon: Home },
@@ -17,6 +18,7 @@ export default function Navbar() {
   const location = useLocation();
   const [mobileOpen, setMobileOpen] = useState(false);
   const { pct, learned, mastered, total } = useProgress();
+  const { theme, toggle } = useTheme();
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
@@ -77,6 +79,15 @@ export default function Navbar() {
               </div>
             </div>
           </div>
+
+          {/* Theme Toggle */}
+          <button
+            onClick={toggle}
+            className="p-2 rounded-lg text-muted-foreground hover:text-foreground hover:bg-secondary transition-colors"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          </button>
 
           {/* Mobile Toggle */}
           <button

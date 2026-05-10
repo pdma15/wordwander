@@ -7,6 +7,7 @@ import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AppLayout from './components/layout/AppLayout';
 import { ProgressProvider } from './lib/progressContext';
+import { ThemeProvider } from './lib/themeContext';
 import Home from './pages/Home';
 import Alphabet from './pages/Alphabet';
 import Phrases from './pages/Phrases';
@@ -60,9 +61,11 @@ function App() {
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <ProgressProvider>
+          <ThemeProvider>
           <Router>
             <AuthenticatedApp />
           </Router>
+          </ThemeProvider>
           <Toaster />
         </ProgressProvider>
       </QueryClientProvider>
