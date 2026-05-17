@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Badge } from '@/components/ui/badge';
-import { Check, X, RotateCcw, ChevronRight } from 'lucide-react';
+import { Check, X, RotateCcw, ChevronRight, ArrowRight } from 'lucide-react';
 import SectionHeader from '../components/shared/SectionHeader';
 import SignboardQuiz from '../components/reading/SignboardQuiz';
 import { readingExercises } from '../lib/kannadaData';
@@ -72,7 +73,20 @@ export default function Reading() {
           </div>
         </div>
 
-        {mode === 'signboards' ? <SignboardQuiz /> : null}
+        {mode === 'signboards' ? (
+          <>
+            <SignboardQuiz />
+            <Link to="/quiz" className="block mt-10">
+              <div className="group flex items-center justify-between px-6 py-4 rounded-2xl border border-border/30 bg-card/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer">
+                <div>
+                  <p className="font-inter text-xs text-muted-foreground mb-0.5">Think you're ready?</p>
+                  <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">Head to the Quiz →</p>
+                </div>
+                <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
+              </div>
+            </Link>
+          </>
+        ) : null}
         {mode === 'signboards' ? null : <>
 
         {/* Level Selector */}
@@ -201,6 +215,17 @@ export default function Reading() {
             </div>
           </motion.div>
         </AnimatePresence>
+
+        {/* Next Page Banner */}
+        <Link to="/quiz" className="block mt-10">
+          <div className="group flex items-center justify-between px-6 py-4 rounded-2xl border border-border/30 bg-card/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer">
+            <div>
+              <p className="font-inter text-xs text-muted-foreground mb-0.5">Think you're ready?</p>
+              <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">Head to the Quiz →</p>
+            </div>
+            <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
+          </div>
+        </Link>
         </>}
       </div>
     </div>

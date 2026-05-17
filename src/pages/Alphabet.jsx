@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import LetterCard from '../components/alphabet/LetterCard';
 import { vowels, consonants } from '../lib/kannadaData';
 
@@ -104,6 +106,24 @@ export default function Alphabet() {
           <span className="flex items-center gap-2">
             <span style={{ color: '#c8942a' }}>✦</span> Tap a card to see its example word and meaning
           </span>
+        </motion.div>
+
+        {/* Next Page Banner */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
+          className="mt-12"
+        >
+          <Link to="/phrases">
+            <div className="group flex items-center justify-between px-6 py-4 rounded-2xl border border-border/30 bg-card/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer">
+              <div>
+                <p className="font-inter text-xs text-muted-foreground mb-0.5">Ready for the next step?</p>
+                <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">Head to Common Phrases →</p>
+              </div>
+              <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
+            </div>
+          </Link>
         </motion.div>
       </div>
     </div>
