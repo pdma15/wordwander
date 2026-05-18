@@ -1,9 +1,6 @@
-**Welcome to me website!** 
-
-**About**
-
 Word Wander is an open-source, dark-themed web platform designed to make learning regional Indian languages accessible and engaging. Starting with Kannada, our mission is to preserve and celebrate linguistic diversity by teaching users to read and communicate in India's regional languages, one letter at a time.
- **Features**
+
+✨ **Features**
 
 🔤 Kannada Alphabet Learning – Master consonants, vowels, and conjuncts with interactive step-by-step lessons
 🗣️ Native Voice Assistance – Hear authentic Kannada pronunciation from native speakers
@@ -17,9 +14,8 @@ Word Wander is an open-source, dark-themed web platform designed to make learnin
 📊 Progress Tracking – Monitor your learning journey and achievements
 
 
-
-
-**Prerequisites:** 
+🚀 Quick Start
+**Prerequisites**
 
 Node.js (v14 or higher)
 npm or yarn
@@ -29,7 +25,7 @@ Installation
 
 Clone the repository:
 
-bash   git clone https://github.com/pdma15/wordwander.git
+bash   git clone https://github.com/yourusername/word-wander.git
    cd word-wander
 
 Install dependencies:
@@ -49,8 +45,7 @@ Open your browser:
 Navigate to http://localhost:3000
 
 
-**usage**
-Usage
+📖 **Usage**
 For Learners
 
 Start on the Home Page – Explore features and get oriented
@@ -62,7 +57,66 @@ Share Feedback – Help us improve your learning experience
 For Developers
 See CONTRIBUTING.md for detailed development guidelines.
 
-**content modules**
+🛠️ **Tech Stack**
+
+Frontend:
+
+React 18+ / Next.js
+Tailwind CSS (dark theme)
+Framer Motion (animations)
+Web Audio API (voice recording)
+
+
+Backend:
+
+Node.js / Express (optional, for quiz grading & feedback)
+MongoDB / Firebase (for storing progress & feedback)
+
+
+Audio & Language:
+
+Google Cloud Text-to-Speech API (for native pronunciations)
+Web Speech API (for user voice recording & recognition)
+
+
+Tools:
+
+Vite / Webpack (bundling)
+Jest + React Testing Library (testing)
+ESLint + Prettier (code quality)
+
+
+
+
+📁 **Project Structure**
+word-wander/
+├── public/
+│   ├── audio/              # Kannada audio files
+│   └── images/             # UI assets
+├── src/
+│   ├── components/         # Reusable React components
+│   │   ├── Home.jsx
+│   │   ├── Lessons.jsx
+│   │   ├── Quiz.jsx
+│   │   └── Feedback.jsx
+│   ├── pages/              # Page components
+│   │   ├── HomePage.jsx
+│   │   ├── LessonPage.jsx
+│   │   ├── QuizPage.jsx
+│   │   └── FeedbackPage.jsx
+│   ├── data/               # Kannada content & lessons
+│   │   ├── alphabet.json
+│   │   ├── phrases.json
+│   │   └── quizScenarios.json
+│   ├── hooks/              # Custom React hooks
+│   ├── utils/              # Helper functions
+│   ├── styles/             # Global CSS & theme
+│   └── App.jsx
+├── .env.example            # Environment variables template
+├── package.json
+└── README.md
+
+🎯 **Content Modules**
 Kannada Alphabet (ಕನ್ನಡ ಅಕ್ಷರಗಳು)
 
 49 letters with native pronunciation
@@ -76,7 +130,7 @@ Context and usage examples
 Audio playback for each phrase
 Phonetic transliteration guide
 
-Reading Exercises
+**Reading Exercises**
 
 Progressive difficulty levels
 Sentence construction breakdown
@@ -97,8 +151,8 @@ Fluency & Confidence (25%)
 
 Pass threshold: 70%
 
-**design**
 
+🎨 **Design**
 Color Scheme (Dark Theme)
 Primary Background:   #1a1a1a (Deep Charcoal)
 Secondary:            #252525 (Card Backgrounds)
@@ -114,7 +168,16 @@ Tablet: 640px - 1024px
 Desktop: > 1024px
 
 
-**Contributing**
+
+
+
+📊 **Quiz Grading System**
+The quiz evaluates learners on four key dimensions:
+DimensionPointsCriteriaVocabulary0-25Correct word choice, appropriate phrasesPronunciation0-25Clarity, accent, phonetic accuracyGrammar0-25Correct sentence structure, case usageFluency0-25Natural delivery, confidence, pacing
+Total Score: 100 points
+Pass Threshold: 70 points
+
+🤝 **Contributing**
 We welcome contributions! Whether you're a developer, linguist, translator, or educator, there are many ways to help.
 How to Contribute
 
@@ -127,11 +190,35 @@ Make your changes (see guidelines below)
 Commit with clear messages:
 
 bash   git commit -m "Add 10 new Kannada phrases for food vocabulary"
-**Push to your fork:**
+
+Push to your fork:
+
 bash   git push origin feature/add-new-phrases
+
 Submit a Pull Request with a description of your changes
 
-**Issues & Bug Reports**
+**Contribution Areas**
+
+📝 Content Development – Add new phrases, lessons, or languages
+🎨 UI/UX Improvements – Enhance design and user experience
+🐛 Bug Fixes – Report and fix issues
+🧪 Testing – Write tests for better code quality
+📚 Documentation – Improve README, guides, and comments
+🌐 Localization – Translate interface to other languages
+🎤 Audio Recording – Provide native speaker pronunciations
+
+**Contribution Guidelines**
+
+Follow the existing code style (ESLint config included)
+Test your changes thoroughly
+Ensure Kannada content is accurate (consult native speakers if needed)
+Write clear commit messages
+Update documentation for new features
+Include a description of your changes in the PR
+
+For detailed guidelines, see CONTRIBUTING.md
+
+🐛 **Issues & Bug Reports**
 Found a bug? Please create an issue with:
 
 Description – What happened?
@@ -140,7 +227,8 @@ Expected Behavior – What should happen?
 Screenshots/Logs – If applicable
 Environment – Browser, device, OS
 
-**Roadmap**
+
+📋 **Roadmap**
 Phase 1 (Current) ✅
 
  Kannada alphabet module
@@ -175,7 +263,7 @@ Phase 4 (2025) 🔮
  More regional Indian languages
 
 
-**Tips for Learning**
+💡** Tips for Learning**
 
 Start with the Alphabet – Master the basic letters before moving to phrases
 Listen & Repeat – Use the audio features to develop proper pronunciation
@@ -185,12 +273,11 @@ Don't Rush – Learning is a journey; take your time and enjoy the process
 Share Your Feedback – Help us improve by telling us what works for you
 
 
-**License**
+📄 License
 This project is licensed under the MIT License – see the LICENSE file for details.
 You're free to use, modify, and distribute this project, even for commercial purposes, as long as you include the license and attribution.
 
-
-**Acknowledgments**
+🙌 Acknowledgments
 
 Kannada Community – For guidance and cultural insights
 Native Speakers – For authentic pronunciations and phrase validation
@@ -199,11 +286,22 @@ Inspiration – Duolingo, Babbel, and other language learning platforms
 Open Source – Built with love using incredible open-source technologies
 
 
-**Show Your Support**
+
+
+🌟 Show Your Support
 If you find Word Wander helpful, please consider:
 
 ⭐ Star this repository – It helps others discover the project
 📢 Share with others – Spread the word about learning regional languages
 🤝 Contribute – Share your skills and knowledge
-💬 Give feedback – Help us understand what works and what doesn't google forms- https://forms.gle/viX1YtFd7WybYBva7
+💬 Give feedback – Help us understand what works and what doesn't. form- https://forms.gle/ZJHXiJHTWXBHbM9e7
+
+
+📖 Learn More
+
+Getting Started Guide
+Developer Setup
+Kannada Language Basics
+Quiz Grading Rubric
+API Documentation
 
