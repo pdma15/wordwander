@@ -108,6 +108,17 @@ export default function Alphabet() {
           </span>
         </motion.div>
 
+        {/* Disclaimer */}
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-4 text-center text-xs font-inter italic"
+          style={{ color: '#5a3e10' }}
+        >
+          * The English pronunciations shown are the closest approximations to the original Kannada sounds. Some Kannada sounds have no exact English equivalent.
+        </motion.p>
+
         {/* Next Page Banner */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
