@@ -117,9 +117,9 @@ export const quizScenarios = [
     title: 'Greeting the Shopkeeper',
     prompt: 'You enter a market. Greet the shopkeeper politely.',
     options: [
-      { text: 'ನಮಸ್ಕಾರ', phonetic: 'Namaskaara', correct: true, feedback: 'Perfect! A warm and respectful greeting.' },
       { text: 'ಹೋಗಿ ಬರುತ್ತೇನೆ', phonetic: 'Hogi baruttene', correct: false, feedback: 'This means "goodbye" — not quite right for a greeting!' },
       { text: 'ಎಷ್ಟು ಬೆಲೆ?', phonetic: 'Eshtu bele?', correct: false, feedback: 'This means "How much?" — save it for later!' },
+      { text: 'ನಮಸ್ಕಾರ', phonetic: 'Namaskaara', correct: true, feedback: 'Perfect! A warm and respectful greeting.' },
     ],
   },
   {
@@ -127,8 +127,8 @@ export const quizScenarios = [
     title: 'Asking for a Product',
     prompt: 'You want to buy tomatoes. Ask the shopkeeper for them.',
     options: [
-      { text: 'ಟೊಮ್ಯಾಟೋ ಕೊಡಿ', phonetic: 'Tomato kodi', correct: true, feedback: 'Great! Clear and direct request.' },
       { text: 'ನೀರು ಕೊಡಿ', phonetic: 'Neeru kodi', correct: false, feedback: 'This asks for water, not tomatoes!' },
+      { text: 'ಟೊಮ್ಯಾಟೋ ಕೊಡಿ', phonetic: 'Tomato kodi', correct: true, feedback: 'Great! Clear and direct request.' },
       { text: 'ಧನ್ಯವಾದ', phonetic: 'Dhanyavaada', correct: false, feedback: 'This means "Thank you" — you haven\'t bought anything yet!' },
     ],
   },
@@ -137,9 +137,9 @@ export const quizScenarios = [
     title: 'Negotiating the Price',
     prompt: 'The shopkeeper says tomatoes are ₹50/kg. Ask the price and try to negotiate.',
     options: [
-      { text: 'ಎಷ್ಟು ಬೆಲೆ? ಸ್ವಲ್ಪ ಕಡಿಮೆ ಮಾಡಿ', phonetic: 'Eshtu bele? Swalpa kadime maadi', correct: true, feedback: 'Excellent! You asked the price and politely negotiated.' },
       { text: 'ಇಲ್ಲ ಬೇಡ', phonetic: 'Illa beda', correct: false, feedback: 'This means "No, I don\'t want" — a bit abrupt for negotiation!' },
       { text: 'ನನಗೆ ಗೊತ್ತಿಲ್ಲ', phonetic: 'Nanage gottilla', correct: false, feedback: 'This means "I don\'t know" — not helpful for negotiating!' },
+      { text: 'ಎಷ್ಟು ಬೆಲೆ? ಸ್ವಲ್ಪ ಕಡಿಮೆ ಮಾಡಿ', phonetic: 'Eshtu bele? Swalpa kadime maadi', correct: true, feedback: 'Excellent! You asked the price and politely negotiated.' },
     ],
   },
   {
@@ -157,8 +157,8 @@ export const quizScenarios = [
     title: 'Thanking & Farewell',
     prompt: 'You\'ve completed your shopping. Thank the shopkeeper and say goodbye.',
     options: [
-      { text: 'ಧನ್ಯವಾದ, ನಮಸ್ಕಾರ', phonetic: 'Dhanyavaada, Namaskaara', correct: true, feedback: 'Culturally appropriate! Thank you and a respectful farewell.' },
       { text: 'ಎಷ್ಟು ಬೆಲೆ?', phonetic: 'Eshtu bele?', correct: false, feedback: 'You\'re asking the price again — you\'ve already finished!' },
+      { text: 'ಧನ್ಯವಾದ, ನಮಸ್ಕಾರ', phonetic: 'Dhanyavaada, Namaskaara', correct: true, feedback: 'Culturally appropriate! Thank you and a respectful farewell.' },
       { text: 'ನನಗೆ ಸಹಾಯ ಮಾಡಿ', phonetic: 'Nanage sahaaya maadi', correct: false, feedback: 'This asks for help — not quite a goodbye!' },
     ],
   },
@@ -167,9 +167,9 @@ export const quizScenarios = [
     title: 'Handling Unavailability',
     prompt: 'The shopkeeper says the product you want isn\'t available. Respond appropriately.',
     options: [
-      { text: 'ಸರಿ, ಬೇರೆ ಏನಾದರೂ ಇದೆಯೇ?', phonetic: 'Sari, bere enaadaru ideye?', correct: true, feedback: 'Great problem-solving! You accepted and asked for alternatives.' },
       { text: 'ಇಲ್ಲ!', phonetic: 'Illa!', correct: false, feedback: 'Just saying "No!" is a bit rude in this context.' },
       { text: 'ನಾನು ಹೋಗುತ್ತೇನೆ', phonetic: 'Naanu hoguttene', correct: false, feedback: 'Walking away works, but it\'s not the most communicative response!' },
+      { text: 'ಸರಿ, ಬೇರೆ ಏನಾದರೂ ಇದೆಯೇ?', phonetic: 'Sari, bere enaadaru ideye?', correct: true, feedback: 'Great problem-solving! You accepted and asked for alternatives.' },
     ],
   },
 ];
