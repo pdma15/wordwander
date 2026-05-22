@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
@@ -9,13 +9,15 @@ import QuizScenarioCard from '../components/quiz/QuizScenarioCard';
 import QuizResults from '../components/quiz/QuizResults';
 import { allQuizSets } from '../lib/kannadaData';
 
-// Pick a random quiz set once per mount (changes on every page load/login)
-function pickRandomSet() {
-  return allQuizSets[Math.floor(Math.random() * allQuizSets.length)];
+function pickFromRemaining(completedIds) {
+  const remaining = allQuizSets.filter(s => !completedIds.includes(s.id));
+  if (remaining.length === 0) return null;
+  return remaining[Math.floor(Math.random() * remaining.length)];
 }
 
 export default function Quiz() {
-  const [quizSet] = useState(() => pickRandomSet());
+  const [completedIds, setCompletedIds] = useState([]);
+  const [quizSet, setQuizSet] = useState(() => pickFromRemaining([]));
   const [started, setStarted] = useState(false);
   const [currentScenario, setCurrentScenario] = useState(0);
   const [selectedOption, setSelectedOption] = useState(null);
@@ -23,7 +25,8 @@ export default function Quiz() {
   const [score, setScore] = useState(0);
   const [completed, setCompleted] = useState(false);
 
-  const scenarios = quizSet.scenarios;
+  const scenarios = quizSet ? quizSet.scenarios : [];
+  const allDone = completed && completedIds.length >= allQuizSets.length;
 
   const handleSelect = (index) => setSelectedOption(index);
 
@@ -40,10 +43,13 @@ export default function Quiz() {
       setSelectedOption(null);
       setShowResult(false);
     } else {
+      const newCompleted = [...completedIds, quizSet.id];
+      setCompletedIds(newCompleted);
       setCompleted(true);
     }
   };
 
+  // Retake the same quiz
   const handleRetake = () => {
     setStarted(true);
     setCurrentScenario(0);
@@ -53,13 +59,24 @@ export default function Quiz() {
     setCompleted(false);
   };
 
-  // Pick a different random set (not the current one) for "next scenario"
-  const nextSet = useMemo(() => {
-    const others = allQuizSets.filter(s => s.id !== quizSet.id);
-    return others[Math.floor(Math.random() * others.length)];
-  }, [quizSet.id]);
+  // Move on to a new quiz set (excluding all already completed)
+  const handleNextSet = () => {
+    const newCompleted = completedIds.includes(quizSet.id)
+      ? completedIds
+      : [...completedIds, quizSet.id];
+    const next = pickFromRemaining(newCompleted);
+    setCompletedIds(newCompleted);
+    setQuizSet(next);
+    setStarted(false);
+    setCurrentScenario(0);
+    setSelectedOption(null);
+    setShowResult(false);
+    setScore(0);
+    setCompleted(false);
+  };
 
   if (completed) {
+    const remainingCount = allQuizSets.length - completedIds.length;
     return (
       <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-2xl mx-auto">
@@ -68,7 +85,8 @@ export default function Quiz() {
             score={score}
             total={scenarios.length}
             onRetake={handleRetake}
-            nextSet={nextSet}
+            onNextSet={remainingCount > 0 ? handleNextSet : null}
+            allMastered={remainingCount === 0}
           />
         </div>
       </div>
@@ -118,6 +136,11 @@ export default function Quiz() {
                 <Badge variant="outline" className="border-accent/30 text-accent font-inter text-xs">
                   Pass: 70%
                 </Badge>
+                {completedIds.length > 0 && (
+                  <Badge variant="outline" className="border-muted-foreground/30 text-muted-foreground font-inter text-xs">
+                    {completedIds.length}/{allQuizSets.length} done
+                  </Badge>
+                )}
               </div>
               <Button
                 onClick={() => setStarted(true)}
