@@ -14,6 +14,7 @@ import Phrases from './pages/Phrases';
 import Reading from './pages/Reading';
 import Quiz from './pages/Quiz';
 import FeedbackPage from './pages/FeedbackPage';
+import Settings from './pages/Settings';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -48,6 +49,7 @@ const AuthenticatedApp = () => {
         <Route path="/reading" element={<Reading />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/feedback" element={<FeedbackPage />} />
+        <Route path="/settings" element={<Settings />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
