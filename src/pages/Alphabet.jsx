@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import LetterCard from '../components/alphabet/LetterCard';
 import { vowels, consonants } from '../lib/kannadaData';
+import { useLanguage, t } from '../lib/languageContext';
 
 export default function Alphabet() {
   const [activeTab, setActiveTab] = useState('vowels');
   const data = activeTab === 'vowels' ? vowels : consonants;
+  const { language } = useLanguage();
 
   return (
     <div
@@ -36,11 +38,11 @@ export default function Alphabet() {
             className="font-poppins text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight"
             style={{ color: '#f0c060', textShadow: '0 2px 20px rgba(200,148,42,0.25)' }}
           >
-            Kannada Alphabet
+            {t(language, 'alphabet_title')}
           </h1>
 
           <p className="mt-4 text-sm sm:text-base max-w-xl mx-auto leading-relaxed" style={{ color: '#906830' }}>
-            Tap a letter to reveal its example word and meaning.
+            {t(language, 'alphabet_subtitle')}
           </p>
 
           {/* Bottom decorative rule */}
@@ -73,9 +75,9 @@ export default function Alphabet() {
                 }
               >
                 {tab === 'vowels' ? (
-                  <span>Vowels <span className="font-kannada opacity-60 text-xs ml-1">ಸ್ವರಗಳು</span></span>
+                  <span>{t(language, 'alphabet_tab_vowels')} <span className="font-kannada opacity-60 text-xs ml-1">ಸ್ವರಗಳು</span></span>
                 ) : (
-                  <span>Consonants <span className="font-kannada opacity-60 text-xs ml-1">ವ್ಯಂಜನಗಳು</span></span>
+                  <span>{t(language, 'alphabet_tab_consonants')} <span className="font-kannada opacity-60 text-xs ml-1">ವ್ಯಂಜನಗಳು</span></span>
                 )}
               </button>
             ))}
@@ -104,7 +106,7 @@ export default function Alphabet() {
           style={{ color: '#6a4818' }}
         >
           <span className="flex items-center gap-2">
-            <span style={{ color: '#c8942a' }}>✦</span> Tap a card to see its example word and meaning
+            <span style={{ color: '#c8942a' }}>✦</span> {t(language, 'alphabet_legend')}
           </span>
         </motion.div>
 
@@ -116,7 +118,7 @@ export default function Alphabet() {
           className="mt-4 text-center text-xs font-inter italic"
           style={{ color: '#c8942a' }}
         >
-          * The English pronunciations shown are the closest approximations to the original Kannada sounds. Some Kannada sounds have no exact English equivalent.
+          {t(language, 'alphabet_disclaimer')}
         </motion.p>
 
         {/* Next Page Banner */}
@@ -129,8 +131,8 @@ export default function Alphabet() {
           <Link to="/phrases">
             <div className="group flex items-center justify-between px-6 py-4 rounded-2xl border border-border/30 bg-card/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer">
               <div>
-                <p className="font-inter text-xs text-muted-foreground mb-0.5">Ready for the next step?</p>
-                <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">Head to Common Phrases →</p>
+                <p className="font-inter text-xs text-muted-foreground mb-0.5">{t(language, 'alphabet_next_label')}</p>
+                <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">{t(language, 'alphabet_next_cta')}</p>
               </div>
               <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
             </div>

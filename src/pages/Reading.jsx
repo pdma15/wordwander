@@ -8,6 +8,7 @@ import { Check, X, RotateCcw, ChevronRight, ArrowRight } from 'lucide-react';
 import SectionHeader from '../components/shared/SectionHeader';
 import SignboardQuiz from '../components/reading/SignboardQuiz';
 import { readingExercises } from '../lib/kannadaData';
+import { useLanguage, t } from '../lib/languageContext';
 
 export default function Reading() {
   const [mode, setMode] = useState('transliteration'); // 'transliteration' | 'signboards'
@@ -46,20 +47,21 @@ export default function Reading() {
   };
 
   const isLastExercise = currentExercise === level.exercises.length - 1;
+  const { language } = useLanguage();
 
   return (
     <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-16">
       <div className="max-w-2xl mx-auto">
         <SectionHeader
-          title="Reading Exercise"
+          title={t(language, 'reading_title')}
           kannadaTitle="ಓದುವ ಅಭ್ಯಾಸ"
-          subtitle="Read Kannada text and type the phonetic transliteration. Build your reading skills step by step."
+          subtitle={t(language, 'reading_subtitle')}
         />
 
         {/* Mode Toggle */}
         <div className="flex justify-center mb-8">
           <div className="flex p-1 gap-1 rounded-xl border border-border/30 bg-card/60">
-            {[['transliteration', 'Transliteration'], ['signboards', '📍 Signboards']].map(([val, label]) => (
+            {[['transliteration', t(language, 'reading_tab_transliteration')], ['signboards', t(language, 'reading_tab_signboards')]].map(([val, label]) => (
               <button
                 key={val}
                 onClick={() => setMode(val)}
@@ -79,8 +81,8 @@ export default function Reading() {
             <Link to="/quiz" className="block mt-10">
               <div className="group flex items-center justify-between px-6 py-4 rounded-2xl border border-border/30 bg-card/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer">
                 <div>
-                  <p className="font-inter text-xs text-muted-foreground mb-0.5">Think you're ready?</p>
-                  <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">Head to the Quiz →</p>
+                  <p className="font-inter text-xs text-muted-foreground mb-0.5">{t(language, 'reading_next_label')}</p>
+                  <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">{t(language, 'reading_next_cta')}</p>
                 </div>
                 <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
               </div>
@@ -132,7 +134,7 @@ export default function Reading() {
             {/* Kannada Text to Read */}
             <div className="text-center mb-8">
               <p className="font-inter text-xs text-muted-foreground uppercase tracking-widest mb-4">
-                Read this aloud
+                {t(language, 'reading_read_aloud')}
               </p>
               <div className="flex items-center justify-center gap-4">
                 <h2 className="font-kannada text-4xl sm:text-5xl font-bold text-foreground leading-relaxed">
@@ -147,7 +149,7 @@ export default function Reading() {
             {/* Input */}
             <div className="space-y-4">
               <label className="font-inter text-sm text-muted-foreground block">
-                Type the phonetic transliteration:
+                {t(language, 'reading_type_label')}
               </label>
               <Input
                 value={userAnswer}
@@ -164,7 +166,7 @@ export default function Reading() {
                   disabled={!userAnswer.trim()}
                   className="w-full h-12 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold"
                 >
-                  Check Answer
+                  {t(language, 'reading_check')}
                 </Button>
               ) : (
                 <motion.div
@@ -181,11 +183,11 @@ export default function Reading() {
                     <div className="flex items-center gap-2 mb-2">
                       {isCorrect ? <Check className="w-5 h-5" /> : <X className="w-5 h-5" />}
                       <span className="font-inter font-semibold">
-                        {isCorrect ? 'Excellent!' : 'Not quite right'}
+                        {isCorrect ? t(language, 'reading_correct') : t(language, 'reading_incorrect')}
                       </span>
                     </div>
                     <p className="font-inter text-sm opacity-80">
-                      Correct answer: <strong>{exercise.phonetic}</strong>
+                      {t(language, 'reading_correct_answer')} <strong>{exercise.phonetic}</strong>
                     </p>
                   </div>
 
@@ -196,7 +198,7 @@ export default function Reading() {
                         onClick={nextExercise}
                         className="flex-1 h-12 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold group"
                       >
-                        Next Exercise
+                        {t(language, 'reading_next')}
                         <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
                       </Button>
                     ) : (
@@ -206,7 +208,7 @@ export default function Reading() {
                         className="flex-1 h-12 rounded-xl border-border/30 font-inter font-semibold"
                       >
                         <RotateCcw className="mr-2 w-4 h-4" />
-                        Restart Level
+                        {t(language, 'reading_restart')}
                       </Button>
                     )}
                   </div>
@@ -220,8 +222,8 @@ export default function Reading() {
         <Link to="/quiz" className="block mt-10">
           <div className="group flex items-center justify-between px-6 py-4 rounded-2xl border border-border/30 bg-card/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer">
             <div>
-              <p className="font-inter text-xs text-muted-foreground mb-0.5">Think you're ready?</p>
-              <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">Head to the Quiz →</p>
+              <p className="font-inter text-xs text-muted-foreground mb-0.5">{t(language, 'reading_next_label')}</p>
+              <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">{t(language, 'reading_next_cta')}</p>
             </div>
             <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
           </div>

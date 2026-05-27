@@ -8,6 +8,7 @@ import SectionHeader from '../components/shared/SectionHeader';
 import QuizScenarioCard from '../components/quiz/QuizScenarioCard';
 import QuizResults from '../components/quiz/QuizResults';
 import { allQuizSets } from '../lib/kannadaData';
+import { useLanguage, t } from '../lib/languageContext';
 
 function pickFromRemaining(completedIds) {
   const remaining = allQuizSets.filter(s => !completedIds.includes(s.id));
@@ -27,6 +28,7 @@ export default function Quiz() {
 
   const scenarios = quizSet ? quizSet.scenarios : [];
   const allDone = completed && completedIds.length >= allQuizSets.length;
+  const { language } = useLanguage();
 
   const handleSelect = (index) => setSelectedOption(index);
 
@@ -80,7 +82,7 @@ export default function Quiz() {
     return (
       <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-2xl mx-auto">
-          <SectionHeader title="Quiz Complete!" kannadaTitle="ಪರೀಕ್ಷೆ ಮುಗಿಯಿತು" />
+          <SectionHeader title={t(language, 'quiz_complete_title')} kannadaTitle="ಪರೀಕ್ಷೆ ಮುಗಿಯಿತು" />
           <QuizResults
             score={score}
             total={scenarios.length}
@@ -117,7 +119,7 @@ export default function Quiz() {
               <div className="absolute inset-0 bg-gradient-to-t from-card via-card/60 to-transparent" />
               <div className="absolute top-3 right-3">
                 <Badge className="bg-primary/80 text-primary-foreground font-inter text-xs flex items-center gap-1">
-                  <Shuffle className="w-3 h-3" /> Random Scenario
+                  <Shuffle className="w-3 h-3" /> {t(language, 'quiz_random_badge')}
                 </Badge>
               </div>
             </div>
@@ -127,18 +129,18 @@ export default function Quiz() {
                 {quizSet.title} Quiz
               </h3>
               <p className="font-inter text-sm text-muted-foreground leading-relaxed mb-2">
-                You'll face {scenarios.length} scenarios. Choose the best Kannada response for each situation.
+                {t(language, 'quiz_description').replace('{n}', scenarios.length)}
               </p>
               <div className="flex items-center gap-3 mb-6">
                 <Badge variant="outline" className="border-primary/30 text-primary font-inter text-xs">
-                  {scenarios.length} Scenarios
+                  {scenarios.length} {t(language, 'quiz_scenarios_label')}
                 </Badge>
                 <Badge variant="outline" className="border-accent/30 text-accent font-inter text-xs">
-                  Pass: 70%
+                  {t(language, 'quiz_pass_label')}
                 </Badge>
                 {completedIds.length > 0 && (
                   <Badge variant="outline" className="border-muted-foreground/30 text-muted-foreground font-inter text-xs">
-                    {completedIds.length}/{allQuizSets.length} done
+                    {completedIds.length}/{allQuizSets.length} {t(language, 'quiz_done_label')}
                   </Badge>
                 )}
               </div>
@@ -163,10 +165,10 @@ export default function Quiz() {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-3">
             <Badge variant="outline" className="border-primary/30 text-primary font-inter text-xs">
-              Scenario {currentScenario + 1}/{scenarios.length}
+              {t(language, 'quiz_scenario_label')} {currentScenario + 1}/{scenarios.length}
             </Badge>
             <span className="font-inter text-xs text-muted-foreground">
-              Score: {score}/{currentScenario + (showResult ? 1 : 0)}
+              {t(language, 'quiz_score_label')} {score}/{currentScenario + (showResult ? 1 : 0)}
             </span>
           </div>
           <div className="flex gap-1.5">
