@@ -8,6 +8,8 @@ import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import AppLayout from './components/layout/AppLayout';
 import { ProgressProvider } from './lib/progressContext';
 import { ThemeProvider } from './lib/themeContext';
+import { LanguageProvider, useLanguage } from './lib/languageContext';
+import LanguageSplash from './components/LanguageSplash';
 import Home from './pages/Home';
 import Alphabet from './pages/Alphabet';
 import Phrases from './pages/Phrases';
@@ -57,22 +59,31 @@ const AuthenticatedApp = () => {
 };
 
 
-function App() {
+const AppWithLanguage = () => {
+  const { language } = useLanguage();
+  if (!language) return <LanguageSplash />;
+  return (
+    <Router>
+      <AuthenticatedApp />
+    </Router>
+  );
+};
 
+function App() {
   return (
     <AuthProvider>
       <QueryClientProvider client={queryClientInstance}>
         <ProgressProvider>
           <ThemeProvider>
-          <Router>
-            <AuthenticatedApp />
-          </Router>
+            <LanguageProvider>
+              <AppWithLanguage />
+            </LanguageProvider>
           </ThemeProvider>
           <Toaster />
         </ProgressProvider>
       </QueryClientProvider>
     </AuthProvider>
-  )
+  );
 }
 
 export default App

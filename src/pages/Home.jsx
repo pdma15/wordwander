@@ -3,43 +3,14 @@ import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { ArrowRight, Languages, BookOpen, GraduationCap, BarChart3, MessageSquare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { useLanguage, t } from '../lib/languageContext';
 
-const features = [
-  {
-    icon: Languages,
-    title: 'Learn the Alphabet',
-    description: 'Master Kannada vowels and consonants with interactive pronunciation guides.',
-    color: 'text-primary',
-    bg: 'bg-primary/10',
-  },
-  {
-    icon: BookOpen,
-    title: 'Common Phrases',
-    description: 'Essential everyday phrases with audio playback and cultural context.',
-    color: 'text-accent',
-    bg: 'bg-accent/10',
-  },
-  {
-    icon: GraduationCap,
-    title: 'Market Scenario Quiz',
-    description: 'Test your skills in a realistic Kannada market conversation.',
-    color: 'text-accent',
-    bg: 'bg-accent/10',
-  },
-  {
-    icon: BarChart3,
-    title: 'Track Progress',
-    description: 'Monitor your learning journey with detailed progress tracking.',
-    color: 'text-primary',
-    bg: 'bg-primary/10',
-  },
-  {
-    icon: MessageSquare,
-    title: 'Q&A Chatbot',
-    description: 'Got questions? Our built-in chatbot answers anything about the app and Kannada learning instantly.',
-    color: 'text-accent',
-    bg: 'bg-accent/10',
-  },
+const featureKeys = [
+  { icon: Languages, titleKey: 'feat_alphabet_title', descKey: 'feat_alphabet_desc', color: 'text-primary', bg: 'bg-primary/10' },
+  { icon: BookOpen, titleKey: 'feat_phrases_title', descKey: 'feat_phrases_desc', color: 'text-accent', bg: 'bg-accent/10' },
+  { icon: GraduationCap, titleKey: 'feat_quiz_title', descKey: 'feat_quiz_desc', color: 'text-accent', bg: 'bg-accent/10' },
+  { icon: BarChart3, titleKey: 'feat_progress_title', descKey: 'feat_progress_desc', color: 'text-primary', bg: 'bg-primary/10' },
+  { icon: MessageSquare, titleKey: 'feat_chatbot_title', descKey: 'feat_chatbot_desc', color: 'text-accent', bg: 'bg-accent/10' },
 ];
 
 const container = {
@@ -53,6 +24,7 @@ const item = {
 };
 
 export default function Home() {
+  const { language } = useLanguage();
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -122,8 +94,7 @@ export default function Home() {
             transition={{ delay: 0.6, duration: 0.6 }}
             className="mt-6 text-muted-foreground font-inter text-lg sm:text-xl max-w-2xl mx-auto leading-relaxed"
           >
-            Journey through the beauty of Kannada — one of the world's oldest living languages. 
-            Learn to read, speak, and connect through step-by-step lessons and immersive experiences.
+            {t(language, 'hero_subtitle')}
           </motion.p>
 
           <motion.div
@@ -134,13 +105,13 @@ export default function Home() {
           >
             <Link to="/alphabet">
               <Button size="lg" className="text-base font-inter font-semibold px-8 py-6 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 group">
-                Start Learning Now
+                {t(language, 'start_learning')}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link to="/quiz">
               <Button size="lg" variant="outline" className="text-base font-inter font-semibold px-8 py-6 rounded-xl border-border/50 hover:bg-secondary">
-                Try the Quiz
+                {t(language, 'try_quiz')}
               </Button>
             </Link>
           </motion.div>
@@ -168,10 +139,10 @@ export default function Home() {
           >
             <p className="font-kannada text-primary/60 text-lg mb-2">ವೈಶಿಷ್ಟ್ಯಗಳು</p>
             <span className="inline-block font-inter text-xs font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4 border border-primary/30 text-primary/80 bg-primary/10">
-              Features We Provide
+              {t(language, 'features_label')}
             </span>
             <h2 className="font-poppins text-3xl sm:text-4xl font-bold text-foreground">
-              Everything You Need to Learn Kannada
+              {t(language, 'features_title')}
             </h2>
             <div className="mt-4 mx-auto w-24 h-0.5 bg-gradient-to-r from-transparent via-primary to-transparent" />
           </motion.div>
@@ -183,7 +154,7 @@ export default function Home() {
             viewport={{ once: true }}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {features.map((feature, index) => (
+            {featureKeys.map((feature, index) => (
               <motion.div
                 key={index}
                 variants={item}
@@ -192,8 +163,8 @@ export default function Home() {
                 <div className={`w-12 h-12 rounded-xl ${feature.bg} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300`}>
                   <feature.icon className={`w-6 h-6 ${feature.color}`} />
                 </div>
-                <h3 className="font-poppins text-lg font-semibold text-foreground mb-2">{feature.title}</h3>
-                <p className="font-inter text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+                <h3 className="font-poppins text-lg font-semibold text-foreground mb-2">{t(language, feature.titleKey)}</h3>
+                <p className="font-inter text-sm text-muted-foreground leading-relaxed">{t(language, feature.descKey)}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -211,15 +182,14 @@ export default function Home() {
           >
             <span className="font-kannada text-5xl text-primary/30 block mb-4">ಪ್ರಾರಂಭಿಸಿ</span>
             <h2 className="font-poppins text-3xl sm:text-4xl font-bold text-foreground mb-6">
-              Begin Your Kannada Journey Today
+              {t(language, 'cta_title')}
             </h2>
             <p className="text-muted-foreground font-inter text-lg mb-10 leading-relaxed">
-              From the ancient scripts carved in Hampi's stones to modern everyday conversations — 
-              discover the richness of Karnataka's language and culture.
+              {t(language, 'cta_subtitle')}
             </p>
             <Link to="/alphabet">
               <Button size="lg" className="text-base font-inter font-semibold px-10 py-6 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/20 group">
-                Start with the Alphabet
+                {t(language, 'start_alphabet')}
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
@@ -239,7 +209,7 @@ export default function Home() {
             </span>
           </div>
           <p className="font-inter text-sm text-muted-foreground">
-            Preserving and teaching regional Indian languages, one word at a time.
+            {t(language, 'footer_tagline')}
           </p>
           <p className="font-kannada text-primary/40 text-xl">
             ಕನ್ನಡ ಕಲಿಯಿರಿ • ಸಂಸ್ಕೃತಿ ಉಳಿಸಿ

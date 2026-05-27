@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
-import { Trash2, AlertTriangle } from 'lucide-react';
+import { Trash2, AlertTriangle, Globe } from 'lucide-react';
+import { useLanguage } from '../lib/languageContext';
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,6 +20,7 @@ import SectionHeader from '../components/shared/SectionHeader';
 export default function Settings() {
   const [deleting, setDeleting] = useState(false);
   const [deleted, setDeleted] = useState(false);
+  const { language, chooseLanguage } = useLanguage();
 
   const handleDeleteAccount = async () => {
     setDeleting(true);
@@ -46,9 +48,41 @@ export default function Settings() {
       <div className="max-w-xl mx-auto">
         <SectionHeader title="Settings" kannadaTitle="ಸೆಟ್ಟಿಂಗ್‌ಗಳು" />
 
+        {/* Language Switcher */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          className="rounded-2xl bg-card/60 border border-border/30 p-6 mb-4"
+        >
+          <div className="flex items-start gap-4">
+            <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+              <Globe className="w-5 h-5 text-primary" />
+            </div>
+            <div className="flex-1">
+              <h3 className="font-poppins text-base font-semibold text-foreground mb-1">Language / भाषा</h3>
+              <p className="font-inter text-sm text-muted-foreground mb-4">Switch the app interface language.</p>
+              <div className="flex gap-3">
+                <button
+                  onClick={() => chooseLanguage('en')}
+                  className={`flex-1 py-3 rounded-xl border font-inter text-sm font-medium transition-all select-none ${language === 'en' ? 'border-primary bg-primary/10 text-primary' : 'border-border/40 text-muted-foreground hover:border-primary/40'}`}
+                >
+                  🇬🇧 English
+                </button>
+                <button
+                  onClick={() => chooseLanguage('hi')}
+                  className={`flex-1 py-3 rounded-xl border font-inter text-sm font-medium transition-all select-none ${language === 'hi' ? 'border-primary bg-primary/10 text-primary' : 'border-border/40 text-muted-foreground hover:border-primary/40'}`}
+                >
+                  🇮🇳 हिंदी
+                </button>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
           className="rounded-2xl bg-card/60 border border-destructive/20 p-6"
         >
           <div className="flex items-start gap-4">
