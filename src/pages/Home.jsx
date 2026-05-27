@@ -140,8 +140,8 @@ export default function Home() {
             <AlertCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
             <p className="font-inter text-sm text-muted-foreground leading-relaxed flex-1">
               {language === 'hi'
-                ? <>यदि आपको इस वेबसाइट पर कोई समस्या या प्रश्न आया है, तो कृपया उसे <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_placeholder/viewform" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:text-primary/80 font-medium">Google Forms रिव्यू</a> में पोस्ट करें — डेवलपर इसे ज़रूर देखेगा।</>
-                : <>If you have encountered any problems or have any queries while using this website, please post them in the <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_placeholder/viewform" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:text-primary/80 font-medium">Google Forms review</a> — the developer will look into it.</>
+                ? <>यदि आपको इस वेबसाइट पर कोई समस्या या प्रश्न आया है, तो कृपया उसे <a href="https://forms.gle/T4dBmTAaZmW7GTZJ8" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:text-primary/80 font-medium">Google Forms रिव्यू</a> में पोस्ट करें — डेवलपर इसे ज़रूर देखेगा।</>
+                : <>If you have encountered any problems or have any queries while using this website, please post them in the <a href="https://forms.gle/T4dBmTAaZmW7GTZJ8" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:text-primary/80 font-medium">Google Forms review</a> — the developer will look into it.</>
               }
             </p>
             <button
