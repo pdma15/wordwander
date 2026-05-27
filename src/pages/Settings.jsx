@@ -64,13 +64,13 @@ export default function Settings() {
               <div className="flex gap-3">
                 <button
                   onClick={() => chooseLanguage('en')}
-                  className={`flex-1 py-3 rounded-xl border font-inter text-sm font-medium transition-all select-none ${language === 'en' ? 'border-primary bg-primary/10 text-primary' : 'border-border/40 text-muted-foreground hover:border-primary/40'}`}
-                >
-                  🇬🇧 English
-                </button>
-                <button
-                  onClick={() => chooseLanguage('hi')}
-                  className={`flex-1 py-3 rounded-xl border font-inter text-sm font-medium transition-all select-none ${language === 'hi' ? 'border-primary bg-primary/10 text-primary' : 'border-border/40 text-muted-foreground hover:border-primary/40'}`}
+                  className={`flex-1 py-3 rounded-xl border font-inter text-sm font-medium transition-all select-none ${language === 'en' ? 'border-primary bg-primary/10 text-primary' : 'border-border text-foreground/80 hover:border-primary/60 hover:text-foreground'}`}
+                  >
+                   🇬🇧 English
+                  </button>
+                  <button
+                   onClick={() => chooseLanguage('hi')}
+                   className={`flex-1 py-3 rounded-xl border font-inter text-sm font-medium transition-all select-none ${language === 'hi' ? 'border-primary bg-primary/10 text-primary' : 'border-border text-foreground/80 hover:border-primary/60 hover:text-foreground'}`}
                 >
                   🇮🇳 हिंदी
                 </button>
