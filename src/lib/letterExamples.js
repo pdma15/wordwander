@@ -160,7 +160,7 @@ export const letterExamples = {
     { word: 'ತಾರೆ', meaning: 'Star', imageQuery: 'stars night sky' },
   ],
   'ಥ': [
-    { word: 'ಸ್ನಾನ', meaning: 'Bath', imageQuery: 'bath water clean' },
+    { word: 'ಥಾಲಿ', meaning: 'Plate / Thali', imageQuery: 'thali indian food plate' },
     { word: 'ಥಳಿ', meaning: 'To beat / Thrash', imageQuery: 'drums beating rhythm' },
     { word: 'ಥರ', meaning: 'Type / Kind', imageQuery: 'variety different types' },
   ],
