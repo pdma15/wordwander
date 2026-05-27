@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { Check, X, Volume2 } from 'lucide-react';
 import AudioButton from '../shared/AudioButton';
 
-export default function QuizScenarioCard({ scenario, selectedOption, onSelect, showResult }) {
+export default function QuizScenarioCard({ scenario, selectedOption, onSelect, showResult, language }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -14,10 +14,10 @@ export default function QuizScenarioCard({ scenario, selectedOption, onSelect, s
       {/* Scenario Header */}
       <div className="mb-8">
         <h3 className="font-poppins text-xl sm:text-2xl font-bold text-foreground mb-3">
-          {scenario.title}
+          {language === 'hi' ? (scenario.title_hi || scenario.title) : scenario.title}
         </h3>
         <p className="font-inter text-muted-foreground leading-relaxed">
-          {scenario.prompt}
+          {language === 'hi' ? (scenario.prompt_hi || scenario.prompt) : scenario.prompt}
         </p>
       </div>
 
@@ -83,7 +83,7 @@ export default function QuizScenarioCard({ scenario, selectedOption, onSelect, s
                     isCorrect ? 'border-accent/20 text-accent' : 'border-destructive/20 text-destructive'
                   }`}
                 >
-                  {option.feedback}
+                  {language === 'hi' ? (option.feedback_hi || option.feedback) : option.feedback}
                 </motion.p>
               )}
             </button>

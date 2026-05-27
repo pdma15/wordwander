@@ -95,14 +95,18 @@ export default function Quiz() {
     );
   }
 
+  const qTitle = language === 'hi' ? (quizSet.title_hi || quizSet.title) : quizSet.title;
+  const qSubtitle = language === 'hi' ? (quizSet.subtitle_hi || quizSet.subtitle) : quizSet.subtitle;
+  const qCta = language === 'hi' ? (quizSet.ctaLabel_hi || quizSet.ctaLabel) : quizSet.ctaLabel;
+
   if (!started) {
     return (
       <div className="min-h-screen px-4 sm:px-6 lg:px-8 py-16">
         <div className="max-w-2xl mx-auto">
           <SectionHeader
-            title={quizSet.title}
+            title={qTitle}
             kannadaTitle={quizSet.kannadaTitle}
-            subtitle={quizSet.subtitle}
+            subtitle={qSubtitle}
           />
 
           <motion.div
@@ -126,7 +130,7 @@ export default function Quiz() {
 
             <div className="bg-card/60 p-6 sm:p-8">
               <h3 className="font-poppins text-lg font-semibold text-foreground mb-3">
-                {quizSet.title} Quiz
+                {qTitle} Quiz
               </h3>
               <p className="font-inter text-sm text-muted-foreground leading-relaxed mb-2">
                 {t(language, 'quiz_description').replace('{n}', scenarios.length)}
@@ -148,7 +152,7 @@ export default function Quiz() {
                 onClick={() => setStarted(true)}
                 className="w-full h-12 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold group"
               >
-                {quizSet.ctaLabel}
+                {qCta}
                 <ChevronRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </div>
@@ -190,6 +194,7 @@ export default function Quiz() {
             selectedOption={selectedOption}
             onSelect={handleSelect}
             showResult={showResult}
+            language={language}
           />
         </AnimatePresence>
 
@@ -200,14 +205,14 @@ export default function Quiz() {
               disabled={selectedOption === null}
               className="w-full h-12 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold"
             >
-              Submit Answer
+              {t(language, 'quiz_submit')}
             </Button>
           ) : (
             <Button
               onClick={handleNext}
               className="w-full h-12 rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 font-inter font-semibold group"
             >
-              {currentScenario < scenarios.length - 1 ? 'Next Scenario' : 'See Results'}
+              {currentScenario < scenarios.length - 1 ? t(language, 'quiz_next_scenario') : t(language, 'quiz_see_results')}
               <ChevronRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Button>
           )}
@@ -216,8 +221,8 @@ export default function Quiz() {
         <Link to="/feedback" className="block mt-6">
           <div className="group flex items-center justify-between px-6 py-4 rounded-2xl border border-border/30 bg-card/60 hover:border-primary/40 hover:bg-primary/5 transition-all duration-300 cursor-pointer">
             <div>
-              <p className="font-inter text-xs text-muted-foreground mb-0.5">How was your experience?</p>
-              <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">Share your Feedback →</p>
+              <p className="font-inter text-xs text-muted-foreground mb-0.5">{t(language, 'quiz_feedback_label')}</p>
+              <p className="font-poppins text-base font-semibold text-foreground group-hover:text-primary transition-colors">{t(language, 'quiz_feedback_cta')}</p>
             </div>
             <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all duration-300" />
           </div>
