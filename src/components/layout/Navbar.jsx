@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { BookOpen, GraduationCap, MessageSquare, Home, Menu, X, Languages, Sun, Moon } from 'lucide-react';
+import { BookOpen, GraduationCap, MessageSquare, Home, Menu, X, Languages, Sun, Moon, Settings } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useProgress } from '../../lib/progressContext';
 import { useTheme } from '../../lib/themeContext';
@@ -12,6 +12,7 @@ const navItems = [
   { path: '/reading', label: 'Reading', icon: BookOpen },
   { path: '/quiz', label: 'Quiz', icon: GraduationCap },
   { path: '/feedback', label: 'Feedback', icon: MessageSquare },
+  { path: '/settings', label: 'Settings', icon: Settings },
 ];
 
 export default function Navbar() {

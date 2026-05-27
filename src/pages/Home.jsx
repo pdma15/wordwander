@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { ArrowRight, Languages, BookOpen, GraduationCap, BarChart3, MessageSquare } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, Languages, BookOpen, GraduationCap, BarChart3, MessageSquare, X, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useLanguage, t } from '../lib/languageContext';
 
@@ -25,6 +25,15 @@ const item = {
 
 export default function Home() {
   const { language } = useLanguage();
+  const [dismissedDisclaimer, setDismissedDisclaimer] = useState(() =>
+    sessionStorage.getItem('disclaimer_dismissed') === 'true'
+  );
+
+  const handleDismiss = () => {
+    sessionStorage.setItem('disclaimer_dismissed', 'true');
+    setDismissedDisclaimer(true);
+  };
+
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
@@ -117,6 +126,34 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+
+      {/* Disclaimer Banner */}
+      <AnimatePresence>
+        {!dismissedDisclaimer && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+            className="relative mx-4 sm:mx-6 lg:mx-8 mt-6 rounded-2xl border border-primary/30 bg-primary/5 backdrop-blur-sm px-5 py-4 flex items-start gap-4"
+          >
+            <AlertCircle className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+            <p className="font-inter text-sm text-muted-foreground leading-relaxed flex-1">
+              {language === 'hi'
+                ? <>यदि आपको इस वेबसाइट पर कोई समस्या या प्रश्न आया है, तो कृपया उसे <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_placeholder/viewform" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:text-primary/80 font-medium">Google Forms रिव्यू</a> में पोस्ट करें — डेवलपर इसे ज़रूर देखेगा।</>
+                : <>If you have encountered any problems or have any queries while using this website, please post them in the <a href="https://docs.google.com/forms/d/e/1FAIpQLSf_placeholder/viewform" target="_blank" rel="noopener noreferrer" className="text-primary underline underline-offset-2 hover:text-primary/80 font-medium">Google Forms review</a> — the developer will look into it.</>
+              }
+            </p>
+            <button
+              onClick={handleDismiss}
+              className="shrink-0 text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Dismiss"
+            >
+              <X className="w-4 h-4" />
+            </button>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Features Section */}
       <section className="relative py-24 px-6">
