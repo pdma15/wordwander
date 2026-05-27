@@ -1,14 +1,20 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useProgress } from '../../lib/progressContext';
+import LetterModal from './LetterModal';
 
 export default function LetterCard({ letter, phonetic, sound, example, meaning, index }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const { progress, setStatus } = useProgress();
   const status = progress[letter]; // undefined | 'learned' | 'mastered'
 
   return (
+    <>
+    {showModal && (
+      <LetterModal letter={letter} phonetic={phonetic} onClose={() => setShowModal(false)} />
+    )}
     <motion.div
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
@@ -116,8 +122,19 @@ export default function LetterCard({ letter, phonetic, sound, example, meaning, 
               {status === 'mastered' ? '★ Mastered' : 'Mark Mastered'}
             </button>
           </div>
+          {/* View Examples button */}
+          <div className="mt-3" onClick={e => e.stopPropagation()}>
+            <button
+              onClick={() => setShowModal(true)}
+              className="w-full text-xs px-3 py-1.5 rounded-full font-inter font-medium transition-all duration-200"
+              style={{ background: 'rgba(200,148,42,0.12)', color: '#c8942a', border: '1px solid rgba(200,148,42,0.3)' }}
+            >
+              View Examples →
+            </button>
+          </div>
         </motion.div>
       )}
     </motion.div>
+    </>
   );
 }
