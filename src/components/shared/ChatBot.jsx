@@ -72,13 +72,20 @@ export default function ChatBot() {
   const send = async () => {
     const text = input.trim();
     if (!text) return;
-    setMessages(prev => [...prev, { role: 'user', text, nav: null }]);
+    const updatedMessages = [...messages, { role: 'user', text, nav: null }];
+    setMessages(updatedMessages);
     setInput('');
     setLoading(true);
 
     try {
+      // Build conversation history for context
+      const history = updatedMessages
+        .slice(1) // skip initial greeting
+        .map(m => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.text}`)
+        .join('\n');
+
       const res = await base44.integrations.Core.InvokeLLM({
-        prompt: `${APP_CONTEXT}\n\nUser message: "${text}"\n\nRespond helpfully. If the user wants to navigate to a page, mention the page name.`,
+        prompt: `${APP_CONTEXT}\n\nConversation so far:\n${history}\n\nNow respond to the latest user message. Be concise (1-3 sentences). If they want to navigate somewhere, mention the page name.`,
       });
 
       const navPage = detectNavIntent(text, res);
